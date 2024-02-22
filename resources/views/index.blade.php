@@ -64,7 +64,7 @@
                                     <div class="social-login">
                                         <a href="{{route('google-auth')}}"><img src="assets/img/google.png" class="img-fluid"
                                                 alt="Logo"></a>
-                                        <a href="#"><img src="assets/img/fb.png" class="img-fluid"
+                                        <a href="{{route('facebook-auth')}}"><img src="assets/img/fb.png" class="img-fluid"
                                                 alt="Logo"></a>
                                     </div>
 
