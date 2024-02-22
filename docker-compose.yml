@@ -66,6 +66,16 @@ services:
                 - ping
             retries: 3
             timeout: 5s
+    postgres:
+        image: 'postgres:14-alpine'
+        ports:
+        - 5432:5432
+        volumes:
+        - ~/apps/postgres:/var/lib/postgresql/data
+        environment:
+        - POSTGRES_PASSWORD=hh180484
+        - POSTGRES_USER=postgres
+        - POSTGRES_DB=whisper
     meilisearch:
         image: 'getmeili/meilisearch:latest'
         ports:
