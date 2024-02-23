@@ -19,12 +19,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('register');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name("dashboard");
+Route::get('/blank-chat', function () {
+    return view('blank-chat');
+});
+Route::get('/chats', function () {
+    return view('chats');
+})->name("chats");
+
+// ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('auth/google',[GoogleAuthcontroller::class,'redirect'])->name('google-auth');
 Route::get('auth/google/call-back',[GoogleAuthcontroller::class,'callbackGoogle']);
@@ -39,15 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
 Route::get('test',[Testcontroller::class, 'test']);
 Route::view('bbb','checkingWebsocket');
 require __DIR__.'/auth.php';

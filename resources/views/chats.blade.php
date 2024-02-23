@@ -200,7 +200,7 @@
 </li>
 <li>
 <div class="chat-user-actives active">
-<a href="chats.html" class="d-flex align-items-center">
+<a href="{{ route('chats') }}" class="d-flex align-items-center">
 <div class="chat-call-user">
 <img src="assets/img/profiles/avatar-02.jpg" alt="img">
 <span class="active-users bg-green"></span>
