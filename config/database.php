@@ -70,7 +70,7 @@ return [
             'port' => env('DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'whisper'),
             'username' => env('DB_USERNAME', 'postgres'),
-            'password' => env('DB_PASSWORD', 'hh180484'),
+            'password' => env('DB_PASSWORD', 'S@feP@ssw0rd!'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,

@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\FacebookAuthcontroller;
-use App\Http\Controllers\GoogleAuthcontroller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,19 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('register');
+    return view('welcome');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('auth/google',[GoogleAuthcontroller::class,'redirect'])->name('google-auth');
-Route::get('auth/google/call-back',[GoogleAuthcontroller::class,'callbackGoogle']);
-
-Route::get('auth/facebook',[FacebookAuthcontroller::class,'redirect'])->name('facebook-auth');
-Route::get('auth/facebook/call-back',[FacebookAuthcontroller::class,'callbackFacebook']);
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
