@@ -47,7 +47,6 @@
                                         </label>
                                     </div>
                                 <div class="form-group">
-
                                     @if (Route::has('password.request'))
                                         <a class="orgot-link underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                                             href="{{ route('password.request') }}">
@@ -56,9 +55,11 @@
                                     @endif
                                 </div>
 
-                                <div class="flex items-center justify-end mt-4">
-
-
+                                <div class="flex items-center justify-between mt-4">
+                                    @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class=" font-semibold underline text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register Now</a>
+                                @endif
+                           
                                     <x-primary-button class="btn btn-primary btn-signin">
                                         {{ __('Log in') }}
                                     </x-primary-button>

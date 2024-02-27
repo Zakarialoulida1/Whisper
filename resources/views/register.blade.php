@@ -87,7 +87,7 @@
                                 <div class="social-login">
                                     <a href="{{route('google-auth')}}"><img src="assets/img/google.png" class="img-fluid"
                                             alt="Logo"></a>
-                                    <a href="#"><img src="assets/img/fb.png" class="img-fluid" alt="Logo"></a>
+                                    <a href="{{ route('facebook-auth') }}"><img src="assets/img/fb.png" class="img-fluid" alt="Logo"></a>
                                 </div>
 
                             </form>
@@ -105,11 +105,4 @@
     </div>
 
 
-    <script src="assets/js/jquery-3.6.0.min.js" type="30b19d594ba7c552d13d9617-text/javascript"></script>
-
-    <script src="assets/js/bootstrap.bundle.min.js" type="30b19d594ba7c552d13d9617-text/javascript"></script>
-
-    <script src="assets/js/script.js" type="30b19d594ba7c552d13d9617-text/javascript"></script>
-    <script src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
-        data-cf-settings="30b19d594ba7c552d13d9617-|49" defer></script>
 </x-guest-layout>
