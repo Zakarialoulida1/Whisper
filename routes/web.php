@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\PrivateWebsocket;
 use App\Http\Controllers\ButtonClickedController;
 use App\Http\Controllers\FacebookAuthcontroller;
 use App\Http\Controllers\GoogleAuthcontroller;
@@ -17,11 +18,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::post('/chat-message',function(\Illuminate\Http\Request $request){
+ event(new \App\Events\PrivateWebsocket($request->message));
+ return null;
+});
 Route::get('private',[TestController::class,'private']);
 
 Route::post('button/clicked', ButtonClickedController::class);
 Route::get('test',[TestController::class,'test']);
-Route::view('bbb','chekingWebsocket');
+Route::view('bbb','test');
 
 Route::get('/', function () {
     return view('welcome');

@@ -10,10 +10,13 @@
     </head>
 
     <body>
+        <ul id="list-messages">
+
+        </ul>
         
-        <button id="submit-button" type="button">
-            Press Me!
-        </button>
+    <form action="" id="form">
+        <label for="input-message">Message :</label>
+        <input type="text" id="input-message">
     </form>
 
         <script>

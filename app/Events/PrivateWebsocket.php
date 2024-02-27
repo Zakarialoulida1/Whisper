@@ -10,17 +10,17 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class PrivateWebsocket
+class PrivateWebsocket implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
      * Create a new event instance.
      */
-    public $mydata;
-    public function __construct()
+   private string $message;
+    public function __construct( string $message )
     {
-        $this->mydata='you got the message';
+        $this->message=$message;
         //
     }
  
@@ -32,17 +32,17 @@ class PrivateWebsocket
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('myPrivateChannel.user.19'),
+            new Channel('public.chat.1'),
         ];
     }
-    // public function broadcastWith(): array
-    // {
-    //     return [
-    //         'message' => $this->mydata,
-    //     ];
-    // }
-    public function broadcastAs(): string
+    public function broadcastWith(): array
     {
-        return 'private_msg';
+        return [
+            'message' => $this->message,
+        ];
+    }
+    public function broadcastAs()
+    {
+        return 'chat-message';
     }
 }
