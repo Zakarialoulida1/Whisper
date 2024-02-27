@@ -22,7 +22,7 @@ form.addEventListener('submit',function (event) {
 
 
 });
-const channel=window.Echo.channel('public.chat.1')
+const channel=window.Echo.private('private.chat.1')
 channel.subscribed(()=>{
     console.log('subscribed!');
 

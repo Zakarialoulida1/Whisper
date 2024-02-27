@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/chat-message',function(\Illuminate\Http\Request $request){
- event(new \App\Events\PrivateWebsocket($request->message));
+ event(new \App\Events\PrivateWebsocket($request->message,auth()->user()));
  return null;
 });
 Route::get('private',[TestController::class,'private']);
