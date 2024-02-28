@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class RegisteredUserController extends Controller
 {
@@ -35,11 +36,12 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
-
+        $userId = IdGenerator::generate(['table' => 'users', 'field'=>'user_id', 'length' => 8, 'prefix' => 'USR-']);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'user_id' => $userId,
         ]);
 
         event(new Registered($user));

@@ -15,15 +15,7 @@ class chatsController extends Controller
      */
     public function index()
     {
-        $userId = Auth::id();
-
-        $users =User::where('id', '!=', $userId)->get();
-        // =Invitation::where('receiver_id', $userId)
-        // ->where('status', 'accepts')
-        // ->with('user')
-        // ->get();
-    
-            return view('blank-chat',compact('users'));
+            return view('blank-chat');
     }
 
     /**

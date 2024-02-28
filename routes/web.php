@@ -1,13 +1,15 @@
 <?php
 
+use App\Http\Controllers\chatsController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\FacebookAuthcontroller;
 use App\Http\Controllers\FriendsController;
-use App\Http\Controllers\chatsController;
 use App\Http\Controllers\GoogleAuthcontroller;
+use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Testcontroller;
 use Illuminate\Support\Facades\Route;
+
 
 
 
@@ -52,7 +54,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/addimage', [ProfileController::class, 'addimage'])->name('profile.addimage');
+    Route::get('/profileedit', [ProfileController::class, 'edit'])->name('invitation.generate');
+    
 });
+
 
 
 

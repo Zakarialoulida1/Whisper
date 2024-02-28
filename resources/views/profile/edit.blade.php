@@ -9,6 +9,14 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
+                    <h1>Invitation Link:</h1>
+                    <p>{{ $invitationLink }}</p>
+
+                    <h1>QR Code:</h1>
+                    {{ $qrCode }}
+
+                    <h1>Expiration:</h1>
+                    <p>{{ $expiration }}</p>
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
