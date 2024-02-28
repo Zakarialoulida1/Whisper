@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="assets/plugins/feather/feather.css">
 
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">

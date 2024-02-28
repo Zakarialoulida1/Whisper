@@ -11,22 +11,23 @@ Alpine.start();
 const form =document.getElementById('form')
 const inputMessage=document.getElementById('input-message');
 const listmessage=document.getElementById('list-messages')
-form.addEventListener('submit',function (event) {
- 
-    console.log('subscribed!');
+
+const recipientId = 30 ;
+
+form.addEventListener('submit', function (event) {
     event.preventDefault();
-    const userInput =inputMessage.value;
-    axios.post('/chat-message',{
-        message:userInput
-    })
-
-
+    const userInput = inputMessage.value;
+  
+    axios.post('/chat-message', {
+        message: userInput,
+        recipient_id: recipientId
+    });
 });
-const channel=window.Echo.private('private.chat.1')
+const channel = window.Echo.private(`private.chat.${recipientId}`);
 channel.subscribed(()=>{
     console.log('subscribed!');
 
-}).listen('.chat-message',(event)=>{
+}).listen('.private-chat-message',(event)=>{
 console.log(event);
 const message = event.message;
 const li =document.createElement('li');
@@ -34,3 +35,4 @@ li.textContent=message;
 listmessage.append(li);
  }
 );
+

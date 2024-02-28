@@ -6,6 +6,8 @@ use App\Http\Controllers\FacebookAuthcontroller;
 use App\Http\Controllers\GoogleAuthcontroller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +20,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::post('/chat-message',function(\Illuminate\Http\Request $request){
- event(new \App\Events\PrivateWebsocket($request->message,auth()->user()));
- return null;
+Route::post('/chat-message', function(\Illuminate\Http\Request $request){
+    $recipientId = 30;
+    $recipient = User::findOrFail($recipientId); // Ensure recipient exists
+    event(new \App\Events\PrivateWebsocket($request->message, auth()->user(), $recipient));
+    return null;
 });
+// Route::post('/chat-message',function(\Illuminate\Http\Request $request){
+//  event(new \App\Events\PrivateWebsocket($request->message,auth()->user()));
+//  return null;
+// });
 Route::get('private',[TestController::class,'private']);
 
 Route::post('button/clicked', ButtonClickedController::class);
@@ -33,9 +40,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [UserController::class,'loadDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('auth/google',[GoogleAuthcontroller::class,'redirect'])->name('google-auth');
 Route::get('auth/google/call-back',[GoogleAuthcontroller::class,'callbackGoogle']);
 
