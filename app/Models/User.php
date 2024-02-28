@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Conversation;
+use App\Models\Invitation;
+use App\Models\Message;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,4 +47,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function messages()
+    {
+        return  $this->hasMany(Message::class);
+    }
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class,'receiver_id');
+    }
+    public function conversations()
+    {
+        return  $this->hasMany(Conversation::class);
+    }
 }

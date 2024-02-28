@@ -1,10 +1,15 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\FacebookAuthcontroller;
+use App\Http\Controllers\FriendsController;
+use App\Http\Controllers\chatsController;
 use App\Http\Controllers\GoogleAuthcontroller;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Testcontroller;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 /*
@@ -25,20 +30,22 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name("dashboard");
-Route::get('/blank-chat', function () {
-    return view('blank-chat');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/chats', [FriendsController::class, 'index'])->name("chats");
+    Route::get('/blank-chat', [chatsController::class, 'index'])->name("blank-chat");
 });
-Route::get('/chats', function () {
-    return view('chats');
-})->name("chats");
+// Route::get('/chats', function () {
+//     return view('chats');
+// })->name("chats");
 
 // ->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('auth/google',[GoogleAuthcontroller::class,'redirect'])->name('google-auth');
-Route::get('auth/google/call-back',[GoogleAuthcontroller::class,'callbackGoogle']);
+Route::get('auth/google', [GoogleAuthcontroller::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/call-back', [GoogleAuthcontroller::class, 'callbackGoogle']);
 
-Route::get('auth/facebook',[FacebookAuthcontroller::class,'redirect'])->name('facebook-auth');
-Route::get('auth/facebook/call-back',[FacebookAuthcontroller::class,'callbackFacebook']);
+Route::get('auth/facebook', [FacebookAuthcontroller::class, 'redirect'])->name('facebook-auth');
+Route::get('auth/facebook/call-back', [FacebookAuthcontroller::class, 'callbackFacebook']);
 
 
 Route::middleware('auth')->group(function () {
@@ -49,8 +56,8 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('test',[Testcontroller::class, 'test']);
-Route::view('bbb','checkingWebsocket');
-require __DIR__.'/auth.php';
+Route::get('test', [Testcontroller::class, 'test']);
+Route::view('bbb', 'checkingWebsocket');
+require __DIR__ . '/auth.php';
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
